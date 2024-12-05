@@ -32,7 +32,8 @@ private:
     int trackDuration;
     bool isPlaying;
 
-    template <typename T> QString formatTime(T milliseconds);
+    QString formatTime(int milliseconds);
+
 
     QPushButton* playPauseButton;
     QPushButton* stopButton;

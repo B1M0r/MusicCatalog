@@ -26,17 +26,21 @@ private slots:
     // Слот для отображения информации о треке (только чтение)
     void showReadonlyTrackDetails(QListWidgetItem* item);
 
+
     // Загрузка треков в виджет списка
     void loadTracks();
 
     // Удаление выбранного трека
     void deleteTrack();
 
+    void filterTracks();
+
 private:
     Ui::MainWindow* ui;            // Указатель на элементы интерфейса
     MediaManager mediaManager;     // Менеджер для работы с треками
     QListWidget* trackListWidget;  // Виджет списка треков
     PlaylistManager playlistManager; // Менеджер для работы с плейлистами
+    QLineEdit* searchLineEdit;
 
     // Инициализация пользовательского интерфейса
     void setupUi();

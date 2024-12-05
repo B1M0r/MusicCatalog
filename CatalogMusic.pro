@@ -13,9 +13,11 @@ SOURCES += main.cpp \
     basedialog.cpp \
     edittrackdialog.cpp \
     formdialog.cpp \
+    logindialog.cpp \
     playlist.cpp \
     playlistdialog.cpp \
     playlistmanager.cpp \
+    registerdialog.cpp \
     trackplayerdialog.cpp
 
 HEADERS  += Track.h \
@@ -25,7 +27,9 @@ HEADERS  += Track.h \
     basedialog.h \
     edittrackdialog.h \
     formdialog.h \
+    logindialog.h \
     playlist.h \
     playlistdialog.h \
     playlistmanager.h \
+    registerdialog.h \
     trackplayerdialog.h

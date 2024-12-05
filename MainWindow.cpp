@@ -2,15 +2,15 @@
 #include "EditTrackDialog.h"
 #include "TrackPlayerDialog.h"
 #include "PlaylistDialog.h"
-#include "playlistmanager.h"
+//#include "playlistmanager.h"
 #include "MediaManager.h"
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QMessageBox>
 #include <QInputDialog>
 
-// Конструктор главного окна
-MainWindow::MainWindow(QWidget* parent)
+                                            // Конструктор главного окна
+                                            MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), mediaManager("tracks.txt"), playlistManager("playlists.txt", mediaManager) {
     setupUi();        // Инициализация элементов интерфейса
     loadTracks();     // Загрузка треков из файла
@@ -32,6 +32,14 @@ void MainWindow::setupUi() {
     setCentralWidget(centralWidget);
 
     QVBoxLayout* layout = new QVBoxLayout(centralWidget);
+
+    // Строка поиска
+    searchLineEdit = new QLineEdit(this);
+    searchLineEdit->setPlaceholderText("Поиск по названию или исполнителю");
+    connect(searchLineEdit, &QLineEdit::textChanged, this, &MainWindow::filterTracks);
+
+    // Добавляем строку поиска в макет
+    layout->addWidget(searchLineEdit);
 
     // Список треков
     trackListWidget = new QListWidget(this);
@@ -162,4 +170,14 @@ void MainWindow::deleteTrack() {
         loadTracks(); // Обновляем список
     }
     // Если пользователь нажал "Нет", ничего не происходит
+}
+
+void MainWindow::filterTracks() {
+    QString query = searchLineEdit->text();
+    QList<Track> filteredTracks = mediaManager.searchTracks(query);
+
+    trackListWidget->clear(); // Очистка списка
+    for (const Track& track : filteredTracks) {
+        trackListWidget->addItem(track.getTitle() + " - " + track.getArtist());
+    }
 }

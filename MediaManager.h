@@ -28,6 +28,9 @@ public:
 
     void updateTrack(int index, const Track& updatedTrack);
 
+    QList<Track> searchTracks(const QString& query) const;
+
+
 private:
     QList<Track> tracks;       // Список треков
     FileManager fileManager;   // Менеджер для работы с файлом

@@ -23,7 +23,8 @@ TrackPlayerDialog::TrackPlayerDialog(const Track& track, QWidget* parent)
     coverLabel->setPixmap(pixmap.scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     layout->addWidget(coverLabel);
 
-    // Отображение названия и исполнителяф
+
+    // Отображение названия и исполнителя
     titleLabel = new QLabel(QString("Название: %1").arg(track.getTitle()), this);
     artistLabel = new QLabel(QString("Исполнитель: %1").arg(track.getArtist()), this);
     layout->addWidget(titleLabel);
@@ -169,9 +170,9 @@ void TrackPlayerDialog::seekTrack(int position) {
     mediaPlayer->setPosition(position);
 }
 
-template <typename T> QString TrackPlayerDialog::formatTime(T milliseconds) {
-    T seconds = (milliseconds / 1000) % 60;
-    T minutes = (milliseconds / 60000) % 60;
+QString TrackPlayerDialog::formatTime(int milliseconds) {
+    int seconds = (milliseconds / 1000) % 60;
+    int minutes = (milliseconds / 60000) % 60;
     return QString("%1:%2")
         .arg(minutes, 2, 10, QChar('0'))
         .arg(seconds, 2, 10, QChar('0'));

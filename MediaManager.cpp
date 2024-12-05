@@ -40,3 +40,14 @@ void MediaManager::loadTracks() {
 void MediaManager::saveTracks() {
     fileManager.saveToFile(tracks);
 }
+
+QList<Track> MediaManager::searchTracks(const QString& query) const {
+    QList<Track> filteredTracks;
+    for (const Track& track : tracks) {
+        if (track.getTitle().contains(query, Qt::CaseInsensitive) ||
+            track.getArtist().contains(query, Qt::CaseInsensitive)) {
+            filteredTracks.append(track);
+        }
+    }
+    return filteredTracks;
+}
